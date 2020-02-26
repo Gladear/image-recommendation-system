@@ -5,12 +5,14 @@ import images
 import files
 import clustering
 
-if len(sys.argv) != 3:
-    print("Command requires two arguments: the paths of the imageset and output datafile")
+if len(sys.argv) != 2:
+    print("Command requires one argument, the data directory")
     exit(1)
 
-imageset_path = sys.argv[1]
-datafile_path = sys.argv[2]
+data_directory = sys.argv[1]
+
+imageset_path = os.path.join(data_directory, 'input', 'imageset')
+datafile_path = os.path.join(data_directory, 'output', 'data.json')
 
 # List images from imageset
 image_paths = images.list_images(imageset_path)
@@ -19,7 +21,6 @@ image_paths = images.list_images(imageset_path)
 pokemons = files.read_pokemons_data(f"{imageset_path}/pokemon.csv")
 
 # Get image data from the images
-
 for image_filename in image_paths:
     pokemon_name = os.path.splitext(image_filename)[0]
     pokemon = pokemons[pokemon_name]
