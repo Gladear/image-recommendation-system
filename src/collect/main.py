@@ -11,7 +11,7 @@ if len(sys.argv) != 2:
 
 data_directory = sys.argv[1]
 
-imageset_path = os.path.join(data_directory, 'input', 'imageset')
+imageset_path = os.path.join(data_directory, 'input', 'imageset', 'training')
 datafile_path = os.path.join(data_directory, 'output', 'data.json')
 
 # List images from imageset
@@ -28,6 +28,8 @@ for image_filename in image_paths:
     image_data = clustering.get_image_data(
         os.path.join(imageset_path, image_filename))
     pokemon.image = image_data
+
+pokemons = dict(filter(lambda x: x[1].image is not None, pokemons.items()))
 
 # Store data in a JSON file
 files.write_data(pokemons, datafile_path)
