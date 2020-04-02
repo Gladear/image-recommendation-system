@@ -1,5 +1,5 @@
 from json import JSONEncoder
 
-class PokemonEncoder(JSONEncoder):
+class ImageEncoder(JSONEncoder):
     def default(self, o):
         return o.__dict__
